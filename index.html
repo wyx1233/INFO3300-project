@@ -1,0 +1,110 @@
+<html>
+<head>
+  <script src="https://d3js.org/d3.v6.min.js">
+  </script>
+  <style>
+    .legend span {
+      margin-right: 20px;
+    }
+
+    .gridlines line {
+      stroke: #bbb;
+    }
+
+    .gridlines .domain {
+      stroke: none;
+    }
+
+  </style>
+</head>
+
+  <body>
+    <h3>
+      Sonia Song<br>
+      ys999
+    </h3>
+    <svg id="p" height="500" width="500">
+    </svg>
+    <div id="scatterLegend" class="legend"> </div>
+          <script>
+            const svg = d3.select("svg#p");
+            const width = svg.attr("width");
+            const height = svg.attr("height");
+            const margin = {top: 10, right: 10, bottom: 40, left: 60};
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+
+            d3.csv("AEM3100.csv", d3.autoType).then( (data) => {
+              data.forEach((item, i) => {
+                if(item['Region Code']===1) {
+                  item['Region Code'] = "Africa";
+                } else if(item['Region Code']===2) {
+                  item['Region Code'] = "Asia";
+                } else if(item['Region Code']===3) {
+                  item['Region Code'] = "Europe";
+                } else if(item['Region Code']===4) {
+                  item['Region Code'] = "North America";
+                } else if(item['Region Code']===5) {
+                  item['Region Code'] = "Oceania";
+                } else if(item['Region Code']===6) {
+                  item['Region Code'] = "South America";
+                }
+              });
+
+              console.log(data);
+              const extentFemale = d3.extent(data, d => d['Life Expectancy for Females']);
+              const femaleScale = d3.scaleLinear().domain(extentFemale).range([chartHeight, 0]);
+              const extentMale = d3.extent(data, d => d['Life Expectancy for Males']);
+              const maleScale = d3.scaleLinear().domain(extentMale).range([0, chartWidth]);
+              const genreScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+              const annotations = svg.append("g").attr("id","annotations");
+              const chartArea = svg.append("g").attr("id","points")
+                              .attr("transform","translate("+margin.left+","+margin.top+")");
+              let bottomAxis = d3.axisBottom(maleScale)
+                                 .tickFormat(d3.format("~f"));
+              let leftAxis = d3.axisLeft(femaleScale)
+                               .tickFormat(d3.format("~f"));
+              let bottomGridlines = d3.axisBottom(maleScale)
+                                      .tickSize(-chartHeight-10)
+                                      .tickFormat("");
+              let leftGridlines = d3.axisLeft(femaleScale)
+                                    .tickSize(-chartWidth-10)
+                                    .tickFormat("");
+              annotations.append("g")
+                         .attr("class", "x axis")
+                         .attr("transform","translate("+margin.left+","+(chartHeight+margin.top+10)+")")
+                         .call(bottomAxis);
+              annotations.append("g")
+                         .attr("class", "y axis")
+                         .attr("transform","translate("+(margin.left-10)+","+margin.top+")")
+                        .call(leftAxis);
+              annotations.append("g")
+                         .attr("class", "y gridlines")
+                         .attr("transform","translate("+(margin.left-10)+","+margin.top+")")
+                         .call(leftGridlines);
+              annotations.append("g")
+                         .attr("class", "x gridlines")
+                         .attr("transform","translate("+margin.left+","+(chartHeight+margin.top+10)+")")
+                         .call(bottomGridlines);
+
+
+              let circles = chartArea.selectAll("circle").data(data)
+                                     .join("circle")
+                                     .attr("cx", d => maleScale(d['Life Expectancy for Males']))
+                                     .attr("cy", d => femaleScale(d['Life Expectancy for Females']))
+                                     .attr("r", 6)
+                                     .style("fill", d=> genreScale(d['Region Code']))
+                                     .attr("opacity", 0.8);
+
+              genreScale.domain().forEach( function(d,i) {
+                d3.select("#scatterLegend")
+                  .append("span")
+                  .text(d)
+                  .style("color", genreScale(d) )
+                });
+
+            });
+          </script>
+  </body>
+</html>
