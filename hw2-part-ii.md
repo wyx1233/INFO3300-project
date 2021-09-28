@@ -242,7 +242,7 @@ Pros:
 - Can clearly and straightforwardly see the choice 
 Cons：
 - Lack of overview： When there are too many options, it can be confusing and intimidating and make it difficult for users to find their choice.
-- Scrolling issues: Too many options may cause the user to likely scroll down the page instead of the combo box, thus hiding the combo box from the screen. This can make it difficult to find information and scroll precisely.
+- Scrolling issues: Too many options may cause the user to likely scroll down the page instead of the combo box, thus hiding the combo box from the screen. This can make it difficult to find information and scroll precisely.
 - Inconsistent user interface： The user interface for the combo box is different between browsers and operating systems, and combo box not only look different but work differently.
 
 
@@ -281,7 +281,7 @@ Pros:
 - Can clearly and straightforwardly see the choice 
 Cons：
 - Lack of overview： When there are too many options, it can be confusing and intimidating and make it difficult for users to find their choice.
-- Scrolling issues: Too many options may cause the user to likely scroll down the page instead of the combo box, thus hiding the combo box from the screen. This can make it difficult to find information and to scroll precisely.
+- Scrolling issues: Too many options may cause the user to likely scroll down the page instead of the combo box, thus hiding the combo box from the screen. This can make it difficult to find information and to scroll precisely.
 - Inconsistent user interface： The user interface for combo box is different between browsers and operating systems, and combo box not only look different but work differently.
 
 Checkboxes
