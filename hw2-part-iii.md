@@ -45,7 +45,7 @@ The second problem is the two options of the scenario. The biggest problem is th
 ### Sketches
 
 Photograph your hand-drawn sketches and include them. Images must be visible in Markdown Preview for credit.
-
+![avatar](/)
 
 
 ### Rationale
