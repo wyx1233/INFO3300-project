@@ -23,7 +23,7 @@ Pros:
 - Can clearly and straightforwardly see the choice 
 Cons：
 - Lack of overview： When there are too many options, it can be confusing and intimidating and make it difficult for users to find their choice.
-- Scrolling issues: Too many options may cause the user to likely scroll down the page instead of the combo box, thus hiding the combo box from the screen. This can make it challenging to find information and to scroll precisely.
+- Scrolling issues: Too many options may cause the user to likely scroll down the page instead of the combo box, thus hiding the combo box from the screen. This can make it challenging to find information and to scroll precisely.
 - Inconsistent user interface： The user interface for the combo box is different between browsers and operating systems, and the combo box not only looks different but works differently.
 
 Single-selection list boxes
